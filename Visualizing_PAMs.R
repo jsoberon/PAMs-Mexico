@@ -307,7 +307,7 @@ dev.off()
 
 
 ## Christen Soberon plots 
-jpeg(filename = "Figure_3a.jpg", width = 166, height = 90, units = "mm", res = 600)
+jpeg(filename = "Figure_3.jpg", width = 166, height = 90, units = "mm", res = 600)
 
 par(mfrow = c(1, 2))
 ## original diagram
@@ -324,7 +324,7 @@ dev.off()
 
 
 ## Christen Soberon options 
-jpeg(filename = "Figure_4a.jpg", width = 166, height = 166, units = "mm", res = 600)
+jpeg(filename = "Figure_4.jpg", width = 166, height = 166, units = "mm", res = 600)
 
 par(mfrow = c(2, 2), cex = 0.7)
 
@@ -354,7 +354,7 @@ dev.off()
 
 
 ## Christen Soberon diagram, blocks explorations
-jpeg(filename = "Figure_5a.jpg", width = 140, height = 200, units = "mm", res = 600)
+jpeg(filename = "Figure_5.jpg", width = 140, height = 200, units = "mm", res = 600)
 layout(matrix(1:18, nrow = 6), heights = c(1.2, 10, 10, 10, 10, 1), 
        widths = c(1.2, 10, 10))
 par(cex = 0.7)
