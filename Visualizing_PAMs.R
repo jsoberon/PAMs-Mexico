@@ -2,7 +2,7 @@
 # Project title: Visualizing Species Richness and Site Similarity from 
 #                Presence-absence Matrices
 # Authors: Jorge Soberon, Marlon E. Cobos, Claudia Nunez-Penichet
-# Date: 1/10/2020 (dd/mm/yyyy)
+# Date: 16/02/2021 (dd/mm/yyyy)
 # ------------------------------------------------------------------------------
 
 
@@ -18,8 +18,8 @@
 # 
 # The data is a presence-absence matrix (PAM) for 1573 species of terrestrial 
 # vertebrates of Mexico. Mexico was divided in a grid of 711 cells of 0.5 decimal
-# degrees for purposes of representation. Species ranges used to construct the PAM were obtained from 
-# the IUCN database.
+# degrees for purposes of representation. Species ranges used to construct the  
+# PAM were obtained from the IUCN database.
 #
 # The analyses presented here are performed using base functions of R, and 
 # other functions from the packages biosurvey, maps, and viridis (for colors).
@@ -58,7 +58,7 @@ source("https://raw.githubusercontent.com/jsoberon/PAMs-Mexico/master/Function_o
 setwd("R/Christen-Soberon") # change it to your working directory
 
 ## this is the presence absence matrix  
-pam_url <- "https://github.com/jsoberon/PAMs-Mexico/blob/master/PAM_IUCN_MEX.RDATA?raw=true"
+pam_url <- "https://github.com/jsoberon/PAMs-Mexico/blob/master/PAM_IUCN_MEX.RData?raw=true"
 load(url(pam_url))
 
 iucn[1:6, 1:8]
@@ -82,7 +82,7 @@ iucnCS <- prepare_PAM_CS(PAM = iucn, exclude_column = 1:2, significance_test = T
 ## the list produced contains all elements needed to produce the following plots
 
 # saving results as RData
-save(iucn, iucnCS, file = "PAM_CS_MEX.RDATA")
+save(iucn, iucnCS, file = "PAM_CS_MEX.RData")
 # ------------------------------------------------------------------------------
 
 
@@ -93,13 +93,13 @@ save(iucn, iucnCS, file = "PAM_CS_MEX.RDATA")
 ## colors for richness
 ### in case some cells were discarded for lack of info, let's match these two
 ### before defining colors
-rich <- iucn_i$Richness_normalized[names(iucnCS$Richness_normalized)]
+rich <- iucn_i$Richness_normalized
 cols <- magma(length(unique(rich)))
 colfact <- as.factor(rich)
 
 ## colors for dispersion field
 ### same matching before defining colors
-disf <- iucn_i$Dispersion_field[names(iucnCS$Dispersion_field_normalized)]
+disf <- iucn_i$Dispersion_field
 cols1 <- viridis(length(unique(disf)))
 colfact1 <- as.factor(disf)
 
@@ -147,10 +147,10 @@ par(mar = c(4.5, 4.5, 3.5, 0.5))
 
 ## original diagram
 rdp(iucn[, -(1:2)], view = 1, limits = 1)
-title(main = "Diversity-range plot")
+title(main = "Previous range-diversity plot")
 
 ## simple Christen Soberon plot  
-plot_PAM_CS(iucnCS, main = "New diversity-range plot")
+plot_PAM_CS(iucnCS, main = "New range-diversity plot")
 # ------------------------------------------------------------------------------
 
 
@@ -164,7 +164,7 @@ x11()
 par(mfrow = c(2, 2), cex = 0.8)
 
 ## simple Christen Soberon plot  
-plot_PAM_CS(iucnCS, main = "Simple diversity-range plot")
+plot_PAM_CS(iucnCS, main = "Simple range-diversity plot")
 
 ## Christen Soberon plot showing randomized values   
 plot_PAM_CS(iucnCS, main = "Random expectations in the plot", col_all = NA,
@@ -233,7 +233,7 @@ plot.new(); text(0.5, 0.5, labels = "Norm. dispersion field / S", srt = 90)
 plot.new()
 
 ### title 1
-plot.new(); text(0.5, 0.5, labels = "Blocks in diversity-range plot", font = 2, cex = 1)
+plot.new(); text(0.5, 0.5, labels = "Blocks in range-diversity plot", font = 2, cex = 1)
 
 ### CS plots
 par(mar = c(2.5, 2, 0.5, 0.5))
@@ -311,11 +311,11 @@ par(mfrow = c(1, 2))
 ## original diagram
 par(cex = 0.6)
 rdp(mat = iucn[, -(1:2)], view = 1, limits = 1)
-title(main = "Previous diversity-range plot")
+title(main = "Previous range-diversity plot")
 
 ## simple Christen Soberon plot  
 par(cex = 0.6)
-plot_PAM_CS(iucnCS, main = "New diversity-range plot")
+plot_PAM_CS(iucnCS, main = "New range-diversity plot")
 
 dev.off()
 
@@ -327,7 +327,7 @@ jpeg(filename = "Figure_4.jpg", width = 166, height = 166, units = "mm", res = 6
 par(mfrow = c(2, 2), cex = 0.7)
 
 ## simple Christen Soberon plot  
-plot_PAM_CS(iucnCS, main = "Simple diversity-range plot")
+plot_PAM_CS(iucnCS, main = "Simple range-diversity plot")
 
 ## Christen Soberon plot showing randomized values   
 plot_PAM_CS(iucnCS, main = "Random expectations in the plot", col_all = NA,
@@ -367,7 +367,7 @@ plot.new(); text(0.5, 0.57, labels = "Norm. dispersion field / S", srt = 90)
 plot.new()
 
 ### title 1
-plot.new(); text(0.5, 0.5, labels = "Blocks in diversity-range plot", font = 2, cex = 1)
+plot.new(); text(0.5, 0.5, labels = "Blocks in range-diversity plot", font = 2, cex = 1)
 
 ### CS plots
 par(mar = c(2.5, 2, 0.5, 0.5))
