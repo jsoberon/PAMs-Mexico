@@ -2,7 +2,7 @@
 # Project title: Visualizing Species Richness and Site Similarity from 
 #                Presence-absence Matrices
 # Authors: Jorge Soberon, Marlon E. Cobos, Claudia Nunez-Penichet
-# Date: 16/02/2021 (dd/mm/yyyy)
+# Date: 05/03/2021 (dd/mm/yyyy)
 # ------------------------------------------------------------------------------
 
 
@@ -16,10 +16,11 @@
 # This script and the data used for analysis is stored in a GitHub repository:
 # https://github.com/jsoberon/PAMs-Mexico
 # 
-# The data is a presence-absence matrix (PAM) for 1573 species of terrestrial 
+# The data is a presence-absence matrix (PAM) for 1595 species of terrestrial 
 # vertebrates of Mexico. Mexico was divided in a grid of 711 cells of 0.5 decimal
 # degrees for purposes of representation. Species ranges used to construct the  
-# PAM were obtained from the IUCN database.
+# PAM were obtained from the IUCN database. The number of species remaining 
+# after excluding species with no presences in the PAM was 1573.
 #
 # The analyses presented here are performed using base functions of R, and 
 # other functions from the packages biosurvey, maps, and viridis (for colors).
@@ -168,12 +169,13 @@ plot_PAM_CS(iucnCS, main = "Simple range-diversity plot")
 
 ## Christen Soberon plot showing randomized values   
 plot_PAM_CS(iucnCS, main = "Random expectations in the plot", col_all = NA,
-            add_random_values = T, ylim =  c(0.048, 0.2056), add_legend = F)
+            add_random_values = T, ylim = c(0, 0.13), add_legend = F)
 
 ## Christen Soberon plot showing significant   
 plot_PAM_CS(iucnCS, main = "Significant values in the plot", add_significant = T, 
             col_significant_low = "gray35", col_significant_high = "gray1",
-            ylim = c(0.048, 0.2056), add_legend = F)
+            pch_significant_low = 16, pch_significant_high = 16,
+            ylim = c(0, 0.13), add_legend = F)
 
 ## geographic representation
 map(regions = "Mexico")
@@ -219,17 +221,17 @@ colsbg4 <- ifelse(blocks$Block == sam4[4], "dodgerblue4", "gray55")
 ## plotting
 x11()
 layout(matrix(1:18, nrow = 6), heights = c(1.2, 10, 10, 10, 10, 1), 
-       widths = c(1, 10, 10))
+       widths = c(1.2, 10, 10))
 par(cex = 0.7)
 
 ## Christen Soberon diagram in blocks 
 ### y labels
 par(mar = rep(0, 4))
 plot.new()
-plot.new(); text(0.5, 0.5, labels = "Norm. dispersion field / S", srt = 90)
-plot.new(); text(0.5, 0.5, labels = "Norm. dispersion field / S", srt = 90)
-plot.new(); text(0.5, 0.5, labels = "Norm. dispersion field / S", srt = 90)
-plot.new(); text(0.5, 0.5, labels = "Norm. dispersion field / S", srt = 90)
+plot.new(); text(0.5, 0.57, labels = "Norm. dispersion field / S", srt = 90)
+plot.new(); text(0.5, 0.57, labels = "Norm. dispersion field / S", srt = 90)
+plot.new(); text(0.5, 0.57, labels = "Norm. dispersion field / S", srt = 90)
+plot.new(); text(0.5, 0.57, labels = "Norm. dispersion field / S", srt = 90)
 plot.new()
 
 ### title 1
@@ -331,12 +333,13 @@ plot_PAM_CS(iucnCS, main = "Simple range-diversity plot")
 
 ## Christen Soberon plot showing randomized values   
 plot_PAM_CS(iucnCS, main = "Random expectations in the plot", col_all = NA,
-            add_random_values = T, ylim =  c(0.048, 0.2056), add_legend = F)
+            add_random_values = T, ylim = c(0, 0.13), add_legend = F)
 
 ## Christen Soberon plot showing significant   
 plot_PAM_CS(iucnCS, main = "Significant values in the plot", add_significant = T, 
             col_significant_low = "gray35", col_significant_high = "gray1",
-            ylim = c(0.048, 0.2056), add_legend = F)
+            pch_significant_low = 16, pch_significant_high = 16,
+            ylim = c(0, 0.13), add_legend = F)
 
 ## geographic representation
 map(regions = "Mexico")
@@ -353,7 +356,7 @@ dev.off()
 ## Christen Soberon diagram, blocks explorations
 jpeg(filename = "Figure_5.jpg", width = 140, height = 200, units = "mm", res = 600)
 layout(matrix(1:18, nrow = 6), heights = c(1.2, 10, 10, 10, 10, 1), 
-       widths = c(1, 10, 10))
+       widths = c(1.2, 10, 10))
 par(cex = 0.7)
 
 ## Christen Soberon diagram in blocks 
@@ -370,7 +373,7 @@ plot.new()
 plot.new(); text(0.5, 0.5, labels = "Blocks in range-diversity plot", font = 2, cex = 1)
 
 ### CS plots
-par(mar = c(2.5, 2, 0.5, 0.5))
+par(mar = c(2.5, 2.5, 0.5, 0.5))
 plot_PAM_CS(iucnCS, main = "", add_legend = FALSE, xlab = "", ylab = "", 
             col_all = colsbg1)
 plot_PAM_CS(iucnCS, main = "", add_legend = FALSE, xlab = "", ylab = "", 
